@@ -1,0 +1,43 @@
+Given a singly linked list of integers. Your task is to return the head of the reversed linked list.
+
+For example:
+The given linked list is 1 -> 2 -> 3 -> 4-> NULL. Then the reverse linked list is 4 -> 3 -> 2 -> 1 -> NULL and the head of the reversed linked list will be 4.
+
+#include <bits/stdc++.h>
+
+/****************************************************************
+
+    Following is the class structure of the LinkedListNode class:
+
+    template <typename T>
+    class LinkedListNode
+    {
+    public:
+        T data;
+        LinkedListNode<T> *next;
+        LinkedListNode(T data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+*****************************************************************/
+
+void reverse(LinkedListNode<int> *&head,LinkedListNode<int> *&current,LinkedListNode<int> *&prev){
+if(current == NULL){
+    head=prev;
+    return;
+}
+LinkedListNode<int> *forward=current ->next;
+reverse(head,forward,current);
+current -> next=prev;
+}
+
+LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
+{
+        LinkedListNode<int> *current=head;
+        LinkedListNode<int> *prev=NULL;
+        reverse(head,current,prev);
+        return head;
+}
